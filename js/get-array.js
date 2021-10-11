@@ -1,4 +1,6 @@
-import{getRandomIntInclusive,getRandomArbitrary} from "random-number.js"
+import{getRandomIntInclusive,getRandomArbitrary} from './random-number.js';
+
+
 const getAvatar=function(){
   const xot=getRandomIntInclusive(1,10);
   return  {avatar: `img/avatars/user${xot}.png`};
@@ -77,4 +79,4 @@ const getArray=function(){
 const result = Array.from({length:10},getArray);
 
 
-export{result};
+export{result,getArray};

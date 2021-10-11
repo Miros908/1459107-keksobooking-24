@@ -1,3 +1,4 @@
-import{result} from 'get-array.js';
+import{result} from './get-array.js';
 
 
+console.log(result)
