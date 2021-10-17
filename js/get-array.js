@@ -3,8 +3,14 @@ import{getRandomIntInclusive,getRandomArbitrary} from './random-number.js';
 
 const getAvatar=function(){
   const xot=getRandomIntInclusive(1,10);
-  return  {avatar: `img/avatars/user${xot}.png`};
-};
+  let avatar = ''
+
+  if(xot>=10){
+    avatar={avatar: 'img/avatars/user' +  xot +'.png'}
+    }else{
+      avatar={avatar: 'img/avatars/user' + '0'+ xot +'.png'}
+    }
+    return avatar}
 
 const getLocation=function(){
   const lats=getRandomArbitrary(35.65000,35.70000,5);
@@ -31,7 +37,8 @@ const newArray = function(){
 const photos=[
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
   'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg.',
+  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
+
 ];
 
 const getPhotosArray=function(){
