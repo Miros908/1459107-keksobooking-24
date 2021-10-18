@@ -21,4 +21,4 @@ function getRandomArbitrary(min, max,dec) {
 
 }
 
-export{getRandomIntInclusive,getRandomArbitrary}
+export{getRandomIntInclusive,getRandomArbitrary};

@@ -1,4 +1,3 @@
 import{result} from './get-array.js';
 
-
-console.log(result)
+import { ads } from './get-element.js';
