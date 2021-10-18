@@ -1,32 +1,44 @@
-let adform=document.querySelector('.ad-form')
 
-let input=adform.elements
-let formfilter=document.querySelector('.map__filters')
+let formfilter=document.querySelector('.map__filters');
+let forms=document.querySelector('.ad-form')
 
-let formdisabled=()=>{
-adform.classList.add('ad-form--disabled')
-formfilter.classList.add('.ad-form--disabled')
 
-var formfilterelements=formfilter.elements
-for(let i=0;i<formfilter.length;i++){
-  formfilter[i].disabled=true}
+let disabledpage=(formmap,form)=>{
+formmap.classList.add('ad-form--disabled');
+forms.classList.add('ad-form--disabled');
+[...formmap.elements].forEach(
 
-for(let i=0;i<input.length;i++){
-input[i].disabled=true}
+  (inputs)=>{inputs.disabled=true}
+  );
+  [...form.elements].forEach(
+
+    (inputs)=>{inputs.disabled=true}
+    );
+
+
+
 }
 
-let formactive=()=>{
-  adform.classList.remove('ad-form--disabled')
-  formfilter.classList.remove('.ad-form--disabled')
 
-  var formfilterelements=formfilter.elements
-  for(let i=0;i<formfilter.length;i++){
-    formfilter[i].disabled=false}
 
-  for(let i=0;i<input.length;i++){
-  input[i].disabled=false}
-}
+let activepage=(formmap,form)=>{
+  formmap.classList.remove('ad-form--disabled');
+  forms.classList.remove('ad-form--disabled');
+  [...formmap.elements].forEach(
 
-let disabledpage=formdisabled()
+    (inputs)=>{inputs.disabled=false}
+    );
+    [...form.elements].forEach(
 
-export{disabledpage}
+      (inputs)=>{inputs.disabled=false}
+      );
+
+
+
+  }
+
+
+
+
+
+
