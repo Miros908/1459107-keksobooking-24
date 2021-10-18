@@ -3,14 +3,14 @@ import{getRandomIntInclusive,getRandomArbitrary} from './random-number.js';
 
 const getAvatar=function(){
   const xot=getRandomIntInclusive(1,10);
-  let avatar = ''
+  let avatar = '';
 
   if(xot>=10){
-    avatar={avatar: 'img/avatars/user' +  xot +'.png'}
-    }else{
-      avatar={avatar: 'img/avatars/user' + '0'+ xot +'.png'}
-    }
-    return avatar}
+    avatar={avatar: `img/avatars/user${   xot }.png`};
+  }else{
+    avatar={avatar: `${'img/avatars/user' + '0'}${ xot }.png`};
+  }
+  return avatar;};
 
 const getLocation=function(){
   const lats=getRandomArbitrary(35.65000,35.70000,5);
