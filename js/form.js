@@ -4,13 +4,14 @@ const title=forms.querySelector('.titles')
 const price=forms.querySelector('.prices')
 const type=forms.querySelector('#type')
 
+
 title.addEventListener('invalid',function(){
   if(title.validity.tooShort){
    title.setCustomValidity('Обьявление должно состоять минимум из 30-х символов');
   }
   else if (title.validity.valueMissing) {
     title.setCustomValidity('Обязательное поле');
-  }
+  }else{ title.setCustomValidity('');}
 
 
 
@@ -24,20 +25,62 @@ const priceForType={
   house:5000,
   palace:10000,
  }
-const pricevalue=price.value
- const minprice=priceForType[type.value]
+
+
+
+
+
+const getPlaceholder=function(){
+const minprice=priceForType[type.value]
 price.placeholder=minprice
+}
+
+const getMinprice=function(){
+  const pricevalue=price.value
+  const minprice=priceForType[type.value]
+ if(pricevalue<minprice){price.setCustomValidity('Минимиальная цена '+minprice)}
+ else{price.setCustomValidity('')}
+}
+
+type.addEventListener('change',function(){
+  getPlaceholder()
+  getMinprice()
+
+})
+price.addEventListener('input',function(){
+  getMinprice()
+})
 
 
 
-  if(pricevalue<minprice){
-    price.setCustomValidity('Значение должно быть больше '+ minprice)
-   }else{ price.setCustomValidity('')}
+const settings = {
+  "1": ["1"],
+  "2": ["1","2"],
+  "3": ["1","2","3"],
+  "100": ["0"],
+}
+const room=forms.querySelector('#room_number')
+const guest=forms.querySelector('#capacity')
+
+const GetRoom=function(){
+  const currentRooms = room.value;
+  const currentGuests = settings[currentRooms];
+  [...guest.children].forEach((option)=>option.disabled=currentGuests.every((setting)=>setting!==option.value));
+
+};
 
 
 
 
 
 
+
+
+
+
+
+room.addEventListener('change',function(){
+  GetRoom()
+})
 
 
