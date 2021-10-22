@@ -37,7 +37,7 @@ let activepage=(formmap,form)=>{
 
   }
 
-
+export{forms}
 
 
 
