@@ -83,4 +83,16 @@ room.addEventListener('change',function(){
   GetRoom()
 })
 
+const timeout=forms.querySelector('#timeout')
+const timein=forms.querySelector('#timein')
+
+
+const time=forms.querySelector('.ad-form__element--time')
+
+time.addEventListener('change',function(evt){
+  timeout.value=evt.target.value
+  timein.value=evt.target.value
+
+})
+
 
