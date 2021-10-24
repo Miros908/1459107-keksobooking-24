@@ -69,13 +69,13 @@ const announcement=function(info){
 
   const container =document.querySelector('#map-canvas');
 
-  container.append(newElement);
+  return newElement
 
 };
 
 
 const ads=announcement(result[1]);
 
-export{ads};
+export{ads,announcement};
 
 

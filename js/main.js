@@ -1,6 +1,7 @@
 import{result} from './get-array.js';
-import { ads } from './get-element.js';
 import './form.js'
+import './GetMap.js'
+import { disabledPages } from './disabled-page.js';
 
 
 

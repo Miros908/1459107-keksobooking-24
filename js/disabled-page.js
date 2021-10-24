@@ -36,8 +36,10 @@ let activepage=(formmap,form)=>{
 
 
   }
+ const disabledPages= disabledpage(formfilter,forms)
 
-export{forms}
+
+export{forms,disabledPages,activepage,formfilter}
 
 
 
