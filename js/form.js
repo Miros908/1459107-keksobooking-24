@@ -1,35 +1,42 @@
+import { forms } from './disabled-page.js';
+
+const title=forms.querySelector('.titles');
+const price=forms.querySelector('.prices');
+const type=forms.querySelector('#type');
 
 
-
-
-
-
-const minsymbols= function(titles){titles.addEventListener('invalid',()=> {
-  if(titles.validity.tooShort){
-    titles.setCustomValidity('Обьявление должно состоять минимум из 30-х символов');
+const minsymbols= function(){title.addEventListener('invalid',()=> {
+  if(title.validity.tooShort){
+    title.setCustomValidity('Обьявление должно состоять минимум из 30-х символов');
   }
-  else if (titles.validity.valueMissing) {
-    titles.setCustomValidity('Обязательное поле');
-  }else{ titles.setCustomValidity('');}
+  else if (title.validity.valueMissing) {
+    title.setCustomValidity('Обязательное поле');
+  }else{ title.setCustomValidity('');}
 
 
 },
 );
 };
 
-
-
-
-const getPlaceholder=function(prices){
-  const minprice=priceForType[type.value];
-  prices.placeholder=minprice;
+const priceForType={
+  bungalow:0,
+  flat:1000,
+  hotel:3000,
+  house:5000,
+  palace:10000,
 };
 
-const getMinprice=function(prices){
-  const pricevalue=prices.value;
+
+const getPlaceholder=function(){
   const minprice=priceForType[type.value];
-  if(pricevalue<minprice){prices.setCustomValidity(`Минимиальная цена ${minprice}`);}
-  else{prices.setCustomValidity('');}
+  price.placeholder=minprice;
+};
+
+const getMinprice=function(){
+  const pricevalue=price.value;
+  const minprice=priceForType[type.value];
+  if(pricevalue<minprice){price.setCustomValidity(`Минимиальная цена ${minprice}`);}
+  else{price.setCustomValidity('');}
 };
 
 type.addEventListener('change',()=> {
@@ -48,7 +55,8 @@ const settings = {
   '3': ['1','2','3'],
   '100': ['0'],
 };
-
+const room=forms.querySelector('#room_number');
+const guest=forms.querySelector('#capacity');
 
 const GetRoom=function(){
   const currentRooms = room.value;
@@ -62,7 +70,8 @@ room.addEventListener('change',()=> {
   GetRoom();
 });
 
-
+const timeout=forms.querySelector('#timeout');
+const timein=forms.querySelector('#timein');
 
 
 const time=forms.querySelector('.ad-form__element--time');
@@ -74,4 +83,4 @@ time.addEventListener('change',(evt)=> {
 });
 
 
-export{minsymbols};
+export{minsymbols,title,priceForType,getPlaceholder,getMinprice};

@@ -84,3 +84,4 @@ result.forEach((results) => {
 });
 
 
+export{marker}
