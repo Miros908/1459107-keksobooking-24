@@ -41,12 +41,12 @@ const announcement=function(info){
   time.textContent=`Заезд после ${info.offer.checkin} выезд до ${info.offer.checkout}`;
 
   const features=newElement.querySelector('.popup__features');
-  features.innerHTML=''
+  features.innerHTML='';
   for(let i = 0;i<info.offer.features.length;i++){
-   var featur=document.createElement('li')
-   featur.classList.add('popup__feature')
-   featur.classList.add('popup__feature'+'--'+ info.offer.features[i])
-   features.appendChild(featur)
+    const featur=document.createElement('li');
+    featur.classList.add('popup__feature');
+    featur.classList.add(`${'popup__feature--'}${ info.offer.features[i]}`);
+    features.appendChild(featur);
 
   }
 
@@ -67,9 +67,8 @@ const announcement=function(info){
   const avatar= newElement.querySelector('.popup__avatar');
   avatar.src=info.author.avatar;
 
-  const container =document.querySelector('#map-canvas');
 
-  return newElement
+  return newElement;
 
 };
 
