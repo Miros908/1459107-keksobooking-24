@@ -1,5 +1,4 @@
 const forms=document.querySelector('.ad-form');
-const formfilter=document.querySelector('.map__filters');
 const title=forms.querySelector('.titles');
 const type=forms.querySelector('#type');
 const price=forms.querySelector('.prices');
@@ -18,7 +17,7 @@ import{settings} from './setting.js';//настройки заказчика
 import { GetRoom } from './form.js';//количество человек в зависимости от комнат
 import{disabledpage} from './disabled-page.js';
 import{activepage} from './disabled-page.js';
-
+import{map} from './get-map.js'
 
 
 

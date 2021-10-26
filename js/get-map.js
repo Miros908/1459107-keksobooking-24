@@ -1,5 +1,5 @@
-import { formfilter } from './disabled-page.js';
-import { forms } from './disabled-page.js';
+const forms=document.querySelector('.ad-form');
+const formfilter=document.querySelector('.map__filters');
 import { activepage } from './disabled-page.js';
 import { result } from './get-array.js';
 import { announcement } from './get-element.js';
@@ -84,4 +84,4 @@ result.forEach((results) => {
 });
 
 
-export{marker}
+export{marker,map}
