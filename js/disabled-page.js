@@ -1,44 +1,37 @@
+const formfilter=document.querySelector('.map__filters');
+const forms=document.querySelector('.ad-form');
 
-let formfilter=document.querySelector('.map__filters');
-let forms=document.querySelector('.ad-form')
 
+const disabledpage=(formmap,form)=>{
+  formmap.classList.add('ad-form--disabled');
+  forms.classList.add('ad-form--disabled');
+  [...formmap.elements].forEach(
 
-let disabledpage=(formmap,form)=>{
-formmap.classList.add('ad-form--disabled');
-forms.classList.add('ad-form--disabled');
-[...formmap.elements].forEach(
-
-  (inputs)=>{inputs.disabled=true}
+    (inputs)=>{inputs.disabled=true;},
   );
   [...form.elements].forEach(
 
-    (inputs)=>{inputs.disabled=true}
-    );
+    (inputs)=>{inputs.disabled=true;},
+  );
 
 
-
-}
-
+};
 
 
-let activepage=(formmap,form)=>{
+const activepage=(formmap,form)=>{
   formmap.classList.remove('ad-form--disabled');
   forms.classList.remove('ad-form--disabled');
   [...formmap.elements].forEach(
 
-    (inputs)=>{inputs.disabled=false}
-    );
-    [...form.elements].forEach(
+    (inputs)=>{inputs.disabled=false;},
+  );
+  [...form.elements].forEach(
 
-      (inputs)=>{inputs.disabled=false}
-      );
-
-
-
-  }
-
-export{forms}
+    (inputs)=>{inputs.disabled=false;},
+  );
 
 
+};
 
 
+export{forms,disabledpage,activepage,formfilter};

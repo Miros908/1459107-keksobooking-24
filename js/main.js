@@ -1,6 +1,4 @@
-import{result} from './get-array.js';
-import { ads } from './get-element.js';
-import './form.js'
-
-
+import{minsymbols} from './form.js';
+minsymbols();
+import { marker } from './get-map.js';
 
