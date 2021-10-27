@@ -12,7 +12,7 @@ const getAvatar=function(){
   if(xot>=10){
     avatar={avatar: `img/avatars/user${   xot }.png`};
   }else{
-    avatar={avatar: `${'img/avatars/user' + '0'}${ xot }.png`};
+    avatar={avatar: `${'img/avatars/user0'}${ xot }.png`};
   }
   return avatar;};
 
@@ -27,7 +27,6 @@ const getLocation=function(){
 };
 
 
-
 const newArray = function(featur){
   const lenght=featur.length-1;
 
@@ -35,7 +34,6 @@ const newArray = function(featur){
 
 
 };
-
 
 
 const getPhotosArray=function(photo){
@@ -46,7 +44,6 @@ const getPhotosArray=function(photo){
 
 const getOffer=function(){
   const location=getLocation();
-
 
 
   return{

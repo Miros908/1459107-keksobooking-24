@@ -31,4 +31,4 @@ const features =[
   'wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner',
 ];
 
-export{priceForType,settings,photos,type,checkin,features}
+export{priceForType,settings,photos,type,checkin,features};

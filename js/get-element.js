@@ -1,5 +1,3 @@
-import{result} from './get-array.js';
-
 
 
 
@@ -69,8 +67,6 @@ const announcement=function(info,elements){
   return newElement;
 
 };
-
-
 
 
 export{announcement};

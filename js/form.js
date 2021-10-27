@@ -1,6 +1,5 @@
 
 
-
 const minsymbols= function(titles){titles.addEventListener('invalid',()=> {
   if(titles.validity.tooShort){
     titles.setCustomValidity('Обьявление должно состоять минимум из 30-х символов');
