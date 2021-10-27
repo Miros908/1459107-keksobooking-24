@@ -21,18 +21,18 @@ const getActiveForm=function(filter,form,map,center){
     },
   ).addTo(map);
 };
-const getMarker=function(map,adres,center,adv){
+const getMarker=function(map,adres,center,adv,isize,isizestandart,ianchor){
 
   const mainPinIcon = L.icon({
     iconUrl: '/img/main-pin.svg',
-    iconSize: [52, 52],
-    iconAnchor: [26, 52],
+    iconSize: isize,
+    iconAnchor: ianchor,
   });
 
   const mainPinStandart = L.icon({
     iconUrl: '/img/pin.svg',
-    iconSize: [40, 40],
-    iconAnchor: [26, 52],
+    iconSize:isizestandart ,
+    iconAnchor: ianchor,
   });
 
 

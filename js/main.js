@@ -20,15 +20,21 @@ const time=forms.querySelector('.ad-form__element--time');
 const maps=L.map('map-canvas');
 const tokioCenter={
   lat: 35.678046,
-  lng: 139.76723
-}
+  lng: 139.76723,
+};
 const adress= document.querySelector('#address');
 const template = document.querySelector('#card').content;
 const element = template.querySelector('.popup');
+const sizeIcon=[52, 52];
+const iconAnchorSize=[26, 52];
+const sizeIconStandart=[40, 40];
 
 
-getMarker(maps,adress,tokioCenter,element)
-getActiveForm(forms,formfilter,maps,tokioCenter)
+
+
+
+getMarker(maps,adress,tokioCenter,element,sizeIcon,sizeIconStandart,iconAnchorSize);
+getActiveForm(forms,formfilter,maps,tokioCenter);
 
 minsymbols(title);
 
@@ -40,9 +46,11 @@ type.addEventListener('change',()=> {
 });
 
 
+GetRoom(room,guest,settings);
 room.addEventListener('change',()=> {
   GetRoom(room,guest,settings);
 });
+
 
 time.addEventListener('change',(evt)=> {
   timeout.value=evt.target.value;
