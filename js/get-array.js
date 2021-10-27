@@ -1,4 +1,8 @@
 import{getRandomIntInclusive,getRandomArbitrary} from './random-number.js';
+import { photos } from './setting.js';
+import { type } from './setting.js';
+import { checkin } from './setting.js';
+import { features } from './setting.js';
 
 
 const getAvatar=function(){
@@ -22,39 +26,27 @@ const getLocation=function(){
   };
 };
 
-const features =[
-  'wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner',
-];
 
-const newArray = function(){
-  const lenght=features.length-1;
 
-  return features.slice(getRandomIntInclusive(0,lenght));
+const newArray = function(featur){
+  const lenght=featur.length-1;
+
+  return featur.slice(getRandomIntInclusive(0,lenght));
 
 
 };
 
-const photos=[
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/duonguyen-8LrGtIxxa4w.jpg',
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/brandon-hoogenboom-SNxQGWxZQi0.jpg',
-  'https://assets.htmlacademy.ru/content/intensive/javascript-1/keksobooking/claire-rendall-b6kAwr1i0Iw.jpg',
 
-];
 
-const getPhotosArray=function(){
-  const w = photos.length-1;
+const getPhotosArray=function(photo){
+  const w = photo.length-1;
 
-  return photos.slice(getRandomIntInclusive(0, w));
+  return photo.slice(getRandomIntInclusive(0, w));
 };
 
 const getOffer=function(){
   const location=getLocation();
-  const type=[
-    'palace','flat','house','bungalow','hotel',
-  ];
-  const checkin=[
-    '12:00','13:00','14:00',
-  ];
+
 
 
   return{
@@ -66,9 +58,9 @@ const getOffer=function(){
     guests:8,
     checkin:checkin[getRandomIntInclusive(0,checkin.length-1)],
     checkout:checkin[getRandomIntInclusive(0,checkin.length-1)],
-    features:newArray(),
+    features:newArray(features),
     description:'Комната для отдыха недорого',
-    photos:getPhotosArray(),
+    photos:getPhotosArray(photos),
   };
 
 };

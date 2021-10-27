@@ -1,4 +1,14 @@
+import{minsymbols} from './form.js';//Минимальное количество симоволов для обьявления
+import{priceForType} from'./setting.js';//цена в зависисмости от типа жилья
+import{getPlaceholder} from './form.js';//изменения плейсхолдера
+import{getMinprice} from './form.js';//изменение минимальной цены
+import{settings} from './setting.js';//настройки заказчика
+import { GetRoom } from './form.js';//количество человек в зависимости от комнат
+import { getActiveForm } from './get-map.js';
+import { getMarker } from './get-map.js';
+
 const forms=document.querySelector('.ad-form');
+const formfilter=document.querySelector('.map__filters');
 const title=forms.querySelector('.titles');
 const type=forms.querySelector('#type');
 const price=forms.querySelector('.prices');
@@ -7,22 +17,18 @@ const guest=forms.querySelector('#capacity');
 const timeout=forms.querySelector('#timeout');
 const timein=forms.querySelector('#timein');
 const time=forms.querySelector('.ad-form__element--time');
+const maps=L.map('map-canvas');
+const tokioCenter={
+  lat: 35.678046,
+  lng: 139.76723
+}
+const adress= document.querySelector('#address');
+const template = document.querySelector('#card').content;
+const element = template.querySelector('.popup');
 
 
-import{minsymbols} from './form.js';//Минимальное количество симоволов для обьявления
-import{priceForType} from'./setting.js';//цена в зависисмости от типа жилья
-import{getPlaceholder} from './form.js';//изменения плейсхолдера
-import{getMinprice} from './form.js';//изменение минимальной цены
-import{settings} from './setting.js';//настройки заказчика
-import { GetRoom } from './form.js';//количество человек в зависимости от комнат
-import{disabledpage} from './disabled-page.js';
-import{activepage} from './disabled-page.js';
-import { mainPinIcon } from './get-map.js';
-import { mainPinStandart } from './get-map.js';
-import { marker } from './get-map.js';
-import{map} from './get-map.js'
-
-
+getMarker(maps,adress,tokioCenter,element)
+getActiveForm(forms,formfilter,maps,tokioCenter)
 
 minsymbols(title);
 

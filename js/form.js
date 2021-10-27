@@ -1,4 +1,4 @@
-const forms=document.querySelector('.ad-form');
+
 
 
 const minsymbols= function(titles){titles.addEventListener('invalid',()=> {

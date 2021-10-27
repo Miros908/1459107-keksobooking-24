@@ -1,12 +1,10 @@
 import{result} from './get-array.js';
 
 
-const template = document.querySelector('#card').content;
-const element = template.querySelector('.popup');
 
 
-const announcement=function(info){
-  const newElement = element.cloneNode(true);
+const announcement=function(info,elements){
+  const newElement = elements.cloneNode(true);
 
   const tittle= newElement.querySelector('.popup__title');
   tittle.textContent=info.offer.title;
@@ -73,8 +71,8 @@ const announcement=function(info){
 };
 
 
-const ads=announcement(result[1]);
 
-export{ads,announcement};
+
+export{announcement};
 
 
