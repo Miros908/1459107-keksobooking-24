@@ -17,6 +17,9 @@ import{settings} from './setting.js';//настройки заказчика
 import { GetRoom } from './form.js';//количество человек в зависимости от комнат
 import{disabledpage} from './disabled-page.js';
 import{activepage} from './disabled-page.js';
+import { mainPinIcon } from './get-map.js';
+import { mainPinStandart } from './get-map.js';
+import { marker } from './get-map.js';
 import{map} from './get-map.js'
 
 

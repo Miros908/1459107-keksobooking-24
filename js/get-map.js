@@ -84,4 +84,4 @@ result.forEach((results) => {
 });
 
 
-export{marker,map}
+export{marker,map,mainPinIcon,mainPinStandart}
