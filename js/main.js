@@ -7,6 +7,8 @@ import { GetRoom } from './form.js';//количество человек в з�
 import { getActiveForm } from './get-map.js';
 import { getMarker } from './get-map.js';
 
+
+
 const forms=document.querySelector('.ad-form');
 const formfilter=document.querySelector('.map__filters');
 const title=forms.querySelector('.titles');
@@ -32,8 +34,6 @@ const sizeIconStandart=[40, 40];
 
 
 
-
-getMarker(maps,adress,tokioCenter,element,sizeIcon,sizeIconStandart,iconAnchorSize);
 getActiveForm(forms,formfilter,maps,tokioCenter);
 
 minsymbols(title);
@@ -57,3 +57,20 @@ time.addEventListener('change',(evt)=> {
   timein.value=evt.target.value;
 
 });
+
+const getAds= function(){
+fetch('https://24.javascript.pages.academy/keksobooking/data',
+{
+  method: 'GET',
+  credentials: 'same-origin',
+
+})
+
+  .then((response) => response.json())
+  .then((data) => {
+    getMarker(maps,adress,tokioCenter,element,sizeIcon,sizeIconStandart,iconAnchorSize,data);
+  });
+
+}
+
+getAds()

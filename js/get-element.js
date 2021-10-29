@@ -1,6 +1,5 @@
 
 
-
 const announcement=function(info,elements){
   const newElement = elements.cloneNode(true);
 

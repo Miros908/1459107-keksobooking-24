@@ -1,5 +1,4 @@
 import { activepage } from './disabled-page.js';
-import { result } from './get-array.js';
 import { announcement } from './get-element.js';
 import { disabledpage } from './disabled-page.js';
 
@@ -21,7 +20,7 @@ const getActiveForm=function(filter,form,map,center){
     },
   ).addTo(map);
 };
-const getMarker=function(map,adres,center,adv,isize,isizestandart,ianchor){
+const getMarker=function(map,adres,center,adv,isize,isizestandart,ianchor,res){
 
   const mainPinIcon = L.icon({
     iconUrl: '/img/main-pin.svg',
@@ -65,7 +64,7 @@ const getMarker=function(map,adres,center,adv,isize,isizestandart,ianchor){
   });
 
 
-  result.forEach((results) => {
+  res.forEach((results) => {
 
     const markers = L.marker({
       lat:results.location.lat,
