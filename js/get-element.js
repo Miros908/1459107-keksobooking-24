@@ -1,70 +1,94 @@
+import {
+  labelFormatters
+} from "./popup-label-formatters.js";
 
+const ensureTarget = (target) => {
+  if (target === null) {
+    throw new Error('element not found');
+  }
+  return target;
+}
 
-const announcement=function(info,elements){
+const ensureXlator = (xlateFunc) => {
+  if (typeof xlateFunc === "function") {
+    return xlateFunc;
+  }
+  throw new Error('function not found');
+}
+
+const setTextContentOnField = (newElement, cssClass, offer) => {
+  const target = ensureTarget(newElement.querySelector(cssClass));
+  const xtlator = ensureXlator(labelFormatters[cssClass]);
+  target.textContent = xtlator(offer);
+}
+
+const setTextContentLabels = (newElement, offer) => {
+  Object
+    .keys(labelFormatters)
+    .forEach(
+      (cssClass) => setTextContentOnField(newElement, cssClass, offer),
+    );
+}
+
+const initFeature = (featureCss) => {
+  const featur = document.createElement('li');
+  featur.classList.add('popup__feature');
+  featur.classList.add(`${'popup__feature--'}${ featureCss}`);
+  return featur;
+}
+
+const setFeatures = (element, features) => {
+  element.innerHTML = '';
+  if (!Array.isArray(features)) {
+    return;
+  }
+  features.forEach((featureCss) => {
+    element.appendChild(initFeature(featureCss));
+  });
+}
+
+const setPhotos = (photos, offerPhotos) => {
+  const photos = newElement.querySelector('.popup__photos');
+  const img = photos.querySelector('.popup__photo');
+
+  photos.innerHTML = '';
+  if (!Array.isArray(offerPhotos)) {
+    return;
+  }
+  offerPhotos.forEach((src) => {
+    const cloneimg = img.cloneNode(true);
+    cloneimg.src = src;
+    photos.appendChild(cloneimg);
+  })
+}
+
+const setAvatar = (avatarElement, avatarSrc) => {
+  if (avatarElement === null) {
+    throw new Error('not found');
+  }
+  avatarElement.src = avatarSrc;
+}
+
+const announcement = function(info, elements) {
   const newElement = elements.cloneNode(true);
+  const offer = info.offer;
 
-  const tittle= newElement.querySelector('.popup__title');
-  tittle.textContent=info.offer.title;
+  setTextContentLabels(newElement, offer);
 
-  const address = newElement.querySelector('.popup__text--address');
-  address.textContent =info.offer.address;
+  setFeatures(
+    newElement.querySelector('.popup__features'),
+    offer.features,
+  );
 
-  const price = newElement.querySelector('.popup__text--price');
-  price.textContent=`${info.offer.price}₽/ночь`;
+  setPhotos(
+    newElement.querySelector('.popup__photos'),
+    offer.photos,
+  );
 
-  const type =  newElement.querySelector('.popup__type');
-  if(info.offer.type==='bungalow'){
-    type.textContent='Бунгало';
-  }
-
-  if(info.offer.type==='flat'){
-    type.textContent='Квартира';
-  }
-  if(info.offer.type==='house'){
-    type.textContent='Дом';
-  }
-  if(info.offer.type==='palace'){
-    type.textContent='Дворец';
-  }
-  if(info.offer.type==='hotel'){
-    type.textContent='Отель';
-  }
-  const guest= newElement.querySelector('.popup__text--capacity');
-  guest.textContent=`${info.offer.rooms} команты для ${info.offer.guests} гостей`;
-
-  const time = newElement.querySelector('.popup__text--time');
-  time.textContent=`Заезд после ${info.offer.checkin} выезд до ${info.offer.checkout}`;
-
-  const features=newElement.querySelector('.popup__features');
-  features.innerHTML='';
-
-  if(info.offer.features !=undefined){
-
-    for(let i = 0;i<info.offer.features.length;i++){
-      const featur=document.createElement('li');
-      featur.classList.add('popup__feature');
-      featur.classList.add(`${'popup__feature--'}${ info.offer.features[i]}`);
-      features.appendChild(featur);
-    }
-  }
-  const description= newElement.querySelector('.popup__description');
-
-  description.textContent=info.offer.description;
-
-  const photos= newElement.querySelector('.popup__photos');
-  const img=photos.querySelector('.popup__photo');
-
-  photos.innerHTML='';
-  if(info.offer.photos!=undefined){
-    for(let i=0;i<info.offer.photos.length;i++){
-      const cloneimg=img.cloneNode(true);
-      cloneimg.src=info.offer.photos[i];
-      photos.appendChild(cloneimg);
-
-    }
-  }
-  const avatar= newElement.querySelector('.popup__avatar');
-  avatar.src=info.author.avatar;
+  setAvatar(
+    newElement.querySelector('.popup__avatar'),
+    info.author.avatar,
+  );
 
 
   return newElement;
@@ -72,6 +96,6 @@ const announcement=function(info,elements){
 };
 
 
-export{announcement};
-
-
+export {
+  announcement
+};
