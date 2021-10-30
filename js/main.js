@@ -5,7 +5,8 @@ import{getMinprice} from './form.js';//изменение минимальной
 import{settings} from './setting.js';//настройки заказчика
 import { GetRoom } from './form.js';//количество человек в зависимости от комнат
 import { getActiveForm } from './get-map.js';
-import { getMarker } from './get-map.js';
+import { getAds } from './get-data.js';
+import { postAds } from './get-data.js';
 
 const forms=document.querySelector('.ad-form');
 const formfilter=document.querySelector('.map__filters');
@@ -28,9 +29,11 @@ const element = template.querySelector('.popup');
 const sizeIcon=[52, 52];
 const iconAnchorSize=[26, 52];
 const sizeIconStandart=[40, 40];
-
-
-
+const formsucces=document.querySelector('#success').content;
+const succes=formsucces.querySelector('.success')
+const body=document.querySelector('body')
+const errormessage=document.querySelector('#errordata').content
+const message=errormessage.querySelector('.errors')
 
 getActiveForm(forms,formfilter,maps,tokioCenter);
 
@@ -57,23 +60,10 @@ time.addEventListener('change',(evt)=> {
 });
 
 
-const getAds= function(){
+getAds(maps,adress,tokioCenter,element,sizeIcon,sizeIconStandart,iconAnchorSize,body,message);
+postAds(forms,body,succes)
 
-  fetch('https://24.javascript.pages.academy/keksobooking/data',
-  {
-    method: 'GET',
-    credentials: 'same-origin',
-
-  })
-
-    .then((response) => response.json())
-    .then((data) => {
-
-      getMarker(maps,adress,tokioCenter,element,sizeIcon,sizeIconStandart,iconAnchorSize,data)
-    })
-
-  }
-
-
-getAds()
+succes.addEventListener('click',function(){
+succes.remove()
+})
 
