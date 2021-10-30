@@ -20,7 +20,7 @@ const getActiveForm=function(filter,form,map,center){
     },
   ).addTo(map);
 };
-const getMarker=function(map,adres,center,adv,isize,isizestandart,ianchor,res){
+const getMarker=function({map,adres,center,adv,isize,isizestandart,ianchor},res){
 
   const mainPinIcon = L.icon({
     iconUrl: '/img/main-pin.svg',

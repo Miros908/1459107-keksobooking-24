@@ -31,4 +31,13 @@ const features =[
   'wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner',
 ];
 
+
+export const estateNames = {
+  'bungalow': 'Бунгало',
+  'flat': 'Квартира',
+  'house': 'Дом',
+  'palace': 'Дворец',
+  'hotel': 'Отель',  
+};
+
 export{priceForType,settings,photos,type,checkin,features};
