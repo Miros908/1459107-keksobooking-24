@@ -104,7 +104,7 @@
         <fieldset class="ad-form__element">
           <label class="ad-form__label" for="type">Тип жилья</label>
           <select id="type" name="type">
-            <option value="bungalow" >Бунгало</option>
+            <option value="bungalow" class="bungalo" >Бунгало</option>
             <option value="flat" >Квартира</option>
             <option value="hotel" >Отель</option>
             <option value="house">Дом</option>
@@ -118,12 +118,12 @@
         <fieldset class="ad-form__element ad-form__element--time">
           <label class="ad-form__label" for="timein">Время заезда и выезда</label>
           <select id="timein" name="timein">
-            <option value="12:00" selected>После 12</option>
+            <option value="12:00" class="twelve">После 12</option>
             <option value="13:00">После 13</option>
             <option value="14:00">После 14</option>
           </select>
           <select id="timeout" name="timeout" title="Time to go out">
-            <option value="12:00" selected>Выезд до 12</option>
+            <option value="12:00" class="twelvs">Выезд до 12</option>
             <option value="13:00">Выезд до 13</option>
             <option value="14:00">Выезд до 14</option>
           </select>
@@ -131,7 +131,7 @@
         <fieldset class="ad-form__element">
           <label class="ad-form__label" for="room_number">Количество комнат</label>
           <select id="room_number" name="rooms" required>
-            <option value="1" selected>1 комната</option>
+            <option value="1" selected class="oneroom">1 комната</option>
             <option value="2">2 комнаты</option>
             <option value="3">3 комнаты</option>
             <option value="100">100 комнат</option>
@@ -142,7 +142,7 @@
           <select id="capacity" name="capacity" required >
             <option value="3"  >для 3 гостей</option>
             <option value="2">для 2 гостей</option>
-            <option value="1" selected>для 1 гостя</option>
+            <option value="1" class="oneguest" selected>для 1 гостя</option>
             <option value="0">не для гостей</option>
           </select>
         </fieldset>

@@ -37,8 +37,8 @@ const getMarker=function(map,adres,center,adv,isize,isizestandart,ianchor,res){
 
   const marker = L.marker(
     {
-      lat: center.lat,
-      lng: center.lng,
+      lat:center.lat,
+      lng:center.lng,
     },
     {
       draggable: true,
@@ -62,8 +62,6 @@ const getMarker=function(map,adres,center,adv,isize,isizestandart,ianchor,res){
 
 
   });
-
-
   res.forEach((results) => {
 
     const markers = L.marker({
@@ -74,10 +72,12 @@ const getMarker=function(map,adres,center,adv,isize,isizestandart,ianchor,res){
       icon:  mainPinStandart,
     });
 
+
     markers.addTo(map).bindPopup(announcement(results,adv));
 
 
   });
+
 
 };
 

@@ -1,36 +1,30 @@
 
 import { getMarker } from './get-map.js';
-const getAds= function(map,adres,center,adv,isize,isizestandart,ianchor,body,message){
-
-  fetch('https://24.javascript.pages.academy/keksobooking/data',
-    {
-      method: 'GET',
-      credentials: 'same-origin',
-
-    })
-
+import { forminizialization } from './form-inizialization.js';
+export const getAds=function(map,adres,center,adv,isize,isizestandart,ianchor,body,message){
+  fetch('https://24.javascript.pages.academy/keksobooking/data')
     .then((response) => response.json())
     .then((data) => {
-
       getMarker(map,adres,center,adv,isize,isizestandart,ianchor,data);
-    }).catch(()=>{body.appendChild(message)})
-
+    }).catch(()=>{body.appendChild(message);});
 };
 
-const postAds=function(form,body,succes){
+
+export const sendForm=function(form,body,suc,error,advform,housetype,room,guest,timeout,timein,description,features,formfilter,price){
+
   form.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
     const formData = new FormData(evt.target);
 
     fetch(
-      'https://24.javascript.pages.academy/keksobooking',
+      'https://24.javascript.pages.academy/keksobooking' ,
       {
         method: 'POST',
         body: formData,
       },
-    ).then(()=>{body.appendChild(succes)});
-  });
-}
+    ).then(()=>{body.appendChild(suc);}).then(()=>{forminizialization(advform,housetype,room,guest,timeout,timein,description,features,formfilter,price);}).catch(()=>{body.appendChild(error);});
 
-export{getAds,postAds};
+
+  });
+};
