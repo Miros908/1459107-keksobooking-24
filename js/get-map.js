@@ -20,31 +20,9 @@ const getActiveForm=function(filter,form,map,center){
     },
   ).addTo(map);
 };
-const getMarker=function(map,adres,center,adv,isize,isizestandart,ianchor,res){
+const getMarker=function(map,adres,adv,res,marker,mainPinStandart){
 
-  const mainPinIcon = L.icon({
-    iconUrl: '/img/main-pin.svg',
-    iconSize: isize,
-    iconAnchor: ianchor,
-  });
-
-  const mainPinStandart = L.icon({
-    iconUrl: '/img/pin.svg',
-    iconSize:isizestandart ,
-    iconAnchor: ianchor,
-  });
-
-
-  const marker = L.marker(
-    {
-      lat:center.lat,
-      lng:center.lng,
-    },
-    {
-      draggable: true,
-      icon: mainPinIcon,
-    },
-  ).addTo(map);
+  marker.addTo(map);
 
 
   adres.value=`${marker.getLatLng().lat } ${ marker.getLatLng().lng}`;

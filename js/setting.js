@@ -39,11 +39,20 @@ export const estateNames = {
   'hotel': 'Отель',
 };
 
+export const center = {
+  lat: 35.678046,
+  lng: 139.76723,
+};
+
 export const ICON_HEIGHT = 52;
 export const ICON_WIDTH = 52;
 export const ICON_STD_HEIGHT = 40;
 export const ICON_STD_WIDTH = 40;
 export const ICON_ANCHOR_WIDTH=26;
 export const ICON_ANCHOR_HEIGHT=26;
+
+export const sizeIcon = [ICON_WIDTH, ICON_HEIGHT];
+export const iconAnchorSize = [ICON_ANCHOR_WIDTH, ICON_ANCHOR_HEIGHT];
+export const sizeIconStandart = [ICON_STD_WIDTH, ICON_STD_HEIGHT];
 
 export{priceForType,settings,photos,type,checkin,features};
