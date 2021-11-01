@@ -25,7 +25,7 @@ export const sendForm=function(form,body,suc,error,advform,housetype,room,guest,
         method: 'POST',
         body: formData,
       },
-    ).then(()=>{body.appendChild(suc);}).catch(()=>{body.appendChild(error);}).then(()=>{forminizialization(advform,housetype,room,guest,timeout,timein,description,features,formfilter,price,marker,center,map,adress)}).then(()=>{getPlaceholder(priceType,types,price)});
+    ).then(()=>{body.appendChild(suc);}).catch(()=>{body.appendChild(error);}).then(()=>{forminizialization(advform,housetype,room,guest,timeout,timein,description,features,formfilter,price,marker,center,map,adress);}).then(()=>{getPlaceholder(priceType,types,price)});
 
   });
 

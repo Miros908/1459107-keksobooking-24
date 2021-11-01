@@ -90,7 +90,7 @@ time.addEventListener('change', (evt) => {
 });
 
 getAds(maps,adress,element,marker,mainPinStandart,body,message);
-sendForm(forms,body,succes,error,desc,firsttype,oneroom,oneguest,firtstime,firsttimein,description,features,formfilter,price,marker,center,maps,adress);
+sendForm(forms,body,succes,error,desc,firsttype,oneroom,oneguest,firtstime,firsttimein,description,features,formfilter,price,marker,center,maps,adress,priceForType,type,priceForType,type);
 
 window.addEventListener('keydown',(evt)=> {
   if(evt.keyCode===27){
