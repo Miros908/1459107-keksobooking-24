@@ -1,86 +1,38 @@
-import { forms } from './disabled-page.js';
-
-const title=forms.querySelector('.titles');
-const price=forms.querySelector('.prices');
-const type=forms.querySelector('#type');
 
 
-const minsymbols= function(){title.addEventListener('invalid',()=> {
-  if(title.validity.tooShort){
-    title.setCustomValidity('Обьявление должно состоять минимум из 30-х символов');
+const minsymbols= function(titles){titles.addEventListener('invalid',()=> {
+  if(titles.validity.tooShort){
+    titles.setCustomValidity('Обьявление должно состоять минимум из 30-х символов');
   }
-  else if (title.validity.valueMissing) {
-    title.setCustomValidity('Обязательное поле');
-  }else{ title.setCustomValidity('');}
+  else if (titles.validity.valueMissing) {
+    titles.setCustomValidity('Обязательное поле');
+  }else{ titles.setCustomValidity('');}
 
 
 },
 );
 };
 
-const priceForType={
-  bungalow:0,
-  flat:1000,
-  hotel:3000,
-  house:5000,
-  palace:10000,
+
+const getMinprice=function(nprice,priceType,types){
+  const pricevalue=nprice.value;
+  const minprice=priceType[types.value];
+  if(pricevalue<minprice){nprice.setCustomValidity(`Минимиальная цена ${minprice}`);}
+  else{nprice.setCustomValidity('');}
+};
+
+const getPlaceholder=function(priceType,types,nprice){
+  const minprice=priceType[types.value];
+  nprice.placeholder=minprice;
 };
 
 
-const getPlaceholder=function(){
-  const minprice=priceForType[type.value];
-  price.placeholder=minprice;
-};
-
-const getMinprice=function(){
-  const pricevalue=price.value;
-  const minprice=priceForType[type.value];
-  if(pricevalue<minprice){price.setCustomValidity(`Минимиальная цена ${minprice}`);}
-  else{price.setCustomValidity('');}
-};
-
-type.addEventListener('change',()=> {
-  getPlaceholder();
-  getMinprice();
-
-});
-price.addEventListener('input',()=> {
-  getMinprice();
-});
-
-
-const settings = {
-  '1': ['1'],
-  '2': ['1','2'],
-  '3': ['1','2','3'],
-  '100': ['0'],
-};
-const room=forms.querySelector('#room_number');
-const guest=forms.querySelector('#capacity');
-
-const GetRoom=function(){
-  const currentRooms = room.value;
-  const currentGuests = settings[currentRooms];
-  [...guest.children].forEach((option)=>option.disabled=currentGuests.every((setting)=>setting!==option.value));
+const GetRoom=function(rooms,guests,sett){
+  const currentRooms = rooms.value;
+  const currentGuests = sett[currentRooms];
+  [...guests.children].forEach((option)=>option.disabled=currentGuests.every((setting)=>setting!==option.value));
 
 };
 
 
-room.addEventListener('change',()=> {
-  GetRoom();
-});
-
-const timeout=forms.querySelector('#timeout');
-const timein=forms.querySelector('#timein');
-
-
-const time=forms.querySelector('.ad-form__element--time');
-
-time.addEventListener('change',(evt)=> {
-  timeout.value=evt.target.value;
-  timein.value=evt.target.value;
-
-});
-
-
-export{minsymbols,title,priceForType,getPlaceholder,getMinprice};
+export{minsymbols,getMinprice,getPlaceholder,GetRoom};
