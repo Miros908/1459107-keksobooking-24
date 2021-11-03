@@ -2,6 +2,7 @@ import { activepage } from './disabled-page.js';
 import { announcement } from './get-element.js';
 import { disabledpage } from './disabled-page.js';
 
+
 const getActiveForm=function(filter,form,map,center){
   disabledpage(filter,form);
   map.on('load', () => {
@@ -40,6 +41,8 @@ const getMarker=function(map,adres,adv,res,marker,mainPinStandart){
 
 
   });
+
+
   res.forEach((results) => {
 
     const markers = L.marker({

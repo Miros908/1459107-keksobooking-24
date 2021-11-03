@@ -1,21 +1,21 @@
 import {
   minsymbols
-} from './form.js'; //Минимальное количество симоволов для обьявления
+} from './form.js';
 import {
   priceForType
-} from './setting.js'; //цена в зависисмости от типа жилья
+} from './setting.js';
 import {
   getPlaceholder
-} from './form.js'; //изменения плейсхолдера
+} from './form.js';
 import {
   getMinprice
-} from './form.js'; //изменение минимальной цены
+} from './form.js';
 import {
   settings
-} from './setting.js'; //настройки заказчика
+} from './setting.js';
 import {
   GetRoom
-} from './form.js'; //количество человек в зависимости от комнат
+} from './form.js';
 import {
   getActiveForm
 } from './get-map.js';
@@ -76,6 +76,10 @@ type.addEventListener('change', () => {
   getMinprice(price, priceForType, type);
 });
 
+price.addEventListener('input',()=> {
+  getMinprice(price, priceForType, type);
+});
+
 
 GetRoom(room, guest, settings);
 room.addEventListener('change', () => {
@@ -90,14 +94,12 @@ time.addEventListener('change', (evt) => {
 });
 
 getAds(maps,adress,element,marker,mainPinStandart,body,message);
-sendForm(forms,body,succes,error,desc,firsttype,oneroom,oneguest,firtstime,firsttimein,description,features,formfilter,price,marker,center,maps,adress,priceForType,type,priceForType,type);
+sendForm(forms,body,succes,error,price,formfilter,marker,center,maps,adress,priceForType,type);
 
 window.addEventListener('keydown',(evt)=> {
   if(evt.keyCode===27){
     succes.remove();
     error.remove();
-    forminizialization(desc,firsttype,oneroom,oneguest,firtstime,firsttimein,description,features,formfilter,price,marker,center,maps,adress);
-    getPlaceholder(priceForType,type,price);
 
 
   }
@@ -107,8 +109,6 @@ succes.addEventListener('click', () => {
 });
 
 
-sendForm(forms,body,succes,error,desc,firsttype,oneroom,oneguest,firtstime,firsttimein,description,features,formfilter,price);
-
 errorbutton.addEventListener('click',()=> {
   error.remove();
 });
@@ -117,3 +117,18 @@ errorbutton.addEventListener('click',()=> {
 reset.addEventListener('click',()=> {
   forminizialization(desc,firsttype,oneroom,oneguest,firtstime,firsttimein,description,features,formfilter,price);
 });
+
+const sort=function compare(a, b) {
+  if (a<b) {
+    return -1;
+  }
+  if (a>b) {
+    return 1;
+  }
+  if(a===b){
+   return 0;
+  }
+}
+const number=[5,2,3,1,6];
+number.sort()
+console.log(number);
