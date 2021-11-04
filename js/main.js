@@ -22,13 +22,14 @@ import {
 import { forminizialization } from './form-inizialization.js';
 
 
-import{getAds} from './get-data.js';
+import{getData} from './get-data.js';
 import { sendForm } from './get-data.js';
 
 import { center } from './setting.js';
 
 import { marker } from './create-marker.js';
 import { mainPinStandart } from './create-marker.js';
+import { getMarker } from './get-map.js';
 
 const forms = document.querySelector('.ad-form');
 const formfilter = document.querySelector('.map__filters');
@@ -65,6 +66,7 @@ const desc=forms.querySelector('#title');
 const description=forms.querySelector('#description');
 const features=forms.querySelectorAll('.features__checkbox');
 const reset=forms.querySelector('.ad-form__reset');
+const types=document.querySelector('#housing-type');
 
 
 getActiveForm(forms, formfilter, maps, center);
@@ -93,7 +95,9 @@ time.addEventListener('change', (evt) => {
 
 });
 
-getAds(maps,adress,element,marker,mainPinStandart,body,message);
+getData().then((response) => response.json()).then((data) => {getMarker(maps,adress,element,data,marker,mainPinStandart);}).catch(()=>{body.appendChild(message);});
+
+
 sendForm(forms,body,succes,error,price,formfilter,marker,center,maps,adress,priceForType,type);
 
 window.addEventListener('keydown',(evt)=> {
@@ -118,17 +122,7 @@ reset.addEventListener('click',()=> {
   forminizialization(desc,firsttype,oneroom,oneguest,firtstime,firsttimein,description,features,formfilter,price);
 });
 
-const sort=function compare(a, b) {
-  if (a<b) {
-    return -1;
-  }
-  if (a>b) {
-    return 1;
-  }
-  if(a===b){
-   return 0;
-  }
-}
-const number=[5,2,3,1,6];
-number.sort()
-console.log(number);
+
+types.addEventListener('change',()=> { getData().then((response) => response.json()).then((data) => {getMarker(maps,adress,element,data,marker,mainPinStandart);});});
+
+

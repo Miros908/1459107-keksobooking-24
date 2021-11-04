@@ -1,14 +1,12 @@
-import { getMarker } from './get-map.js';
+
 import { forminizialization } from './form-inizialization.js';
 import { getPlaceholder } from './form.js';
 
-export const getAds=function(map,adres,adv,marker,mainPinStandart,body,message){
-  fetch('https://24.javascript.pages.academy/keksobooking/data')
-    .then((response) => response.json())
-    .then((data) => {
-      const datas=data.slice(0,10);
-      getMarker(map,adres,adv,datas,marker,mainPinStandart);
-    }).catch(()=>{body.appendChild(message);});
+
+export const getData=function(){
+  return fetch('https://24.javascript.pages.academy/keksobooking/data');
+
+
 };
 
 
