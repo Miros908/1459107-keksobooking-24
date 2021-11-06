@@ -30,9 +30,8 @@ import { center } from './setting.js';
 import { marker } from './create-marker.js';
 import { mainPinStandart } from './create-marker.js';
 import { getMarker } from './get-map.js';
-import { arrFeatures } from './filter.js';
 
-
+import{cratePredicate} from './filter.js';
 const forms = document.querySelector('.ad-form');
 const formfilter = document.querySelector('.map__filters');
 const title = forms.querySelector('.titles');
@@ -72,7 +71,7 @@ const types=document.querySelector('#housing-type');
 const rooms=document.querySelector('#housing-rooms');
 const guests=document.querySelector('#housing-guests');
 const houseprice=document.querySelector('#housing-price');
-const featur=document.querySelector('#housing-features');
+
 
 
 getActiveForm(forms, formfilter, maps, center);
@@ -128,7 +127,7 @@ reset.addEventListener('click',()=> {
   forminizialization(desc,firsttype,oneroom,oneguest,firtstime,firsttimein,description,features,formfilter,price);
 });
 
-import{cratePredicate} from './filter.js';
+
 
 
 formfilter.addEventListener('change',()=> { getData().then((response) => response.json()).then((data) => {getMarker(maps,adress,element,data,marker,mainPinStandart,cratePredicate(types.value,rooms.value,guests.value,houseprice.value));});});
