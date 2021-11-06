@@ -27,7 +27,7 @@ const getPlaceholder=function(priceType,types,nprice){
 };
 
 
-const GetRoom=function(rooms,guests,sett){
+const setAvailableRoom=function(rooms,guests,sett){
   const currentRooms = rooms.value;
   const currentGuests = sett[currentRooms];
   [...guests.children].forEach((option)=>option.disabled=currentGuests.every((setting)=>setting!==option.value));
@@ -35,4 +35,4 @@ const GetRoom=function(rooms,guests,sett){
 };
 
 
-export{minsymbols,getMinprice,getPlaceholder,GetRoom};
+export{minsymbols,getMinprice,getPlaceholder,setAvailableRoom};

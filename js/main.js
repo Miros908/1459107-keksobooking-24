@@ -14,7 +14,7 @@ import {
   settings
 } from './setting.js';
 import {
-  GetRoom
+  setAvailableRoom
 } from './form.js';
 import {
   getActiveForm
@@ -73,7 +73,6 @@ const guests=document.querySelector('#housing-guests');
 const houseprice=document.querySelector('#housing-price');
 
 
-
 getActiveForm(forms, formfilter, maps, center);
 
 minsymbols(title);
@@ -88,9 +87,9 @@ price.addEventListener('input',()=> {
 });
 
 
-GetRoom(room, guest, settings);
+setAvailableRoom(room, guest, settings);
 room.addEventListener('change', () => {
-  GetRoom(room, guest, settings);
+  setAvailableRoom(room, guest, settings);
 });
 
 
@@ -102,8 +101,6 @@ time.addEventListener('change', (evt) => {
 
 getData().then((response) => response.json()).then((data) => {getMarker(maps,adress,element,data,marker,mainPinStandart,cratePredicate(types.value,rooms.value,guests.value,houseprice.value));}).catch(()=>{body.appendChild(message);});
 
-
-sendForm(forms,body,succes,error,price,formfilter,marker,center,maps,adress,priceForType,type);
 
 window.addEventListener('keydown',(evt)=> {
   if(evt.keyCode===27){
@@ -128,8 +125,12 @@ reset.addEventListener('click',()=> {
 });
 
 
-
-
 formfilter.addEventListener('change',()=> { getData().then((response) => response.json()).then((data) => {getMarker(maps,adress,element,data,marker,mainPinStandart,cratePredicate(types.value,rooms.value,guests.value,houseprice.value));});});
 
 
+forms.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  const formData = new FormData(evt.target);
+  sendForm(formData).then(()=>{body.appendChild(succes);}).then(()=>{forminizialization(forms,formfilter,marker,center,maps,adress);}).then(()=>{getData().then((response) => response.json()).then((data) => {getMarker(maps,adress,element,data,marker,mainPinStandart,cratePredicate(types.value,rooms.value,guests.value,houseprice.value));});}).catch(()=>{body.appendChild(error);});
+},
+);

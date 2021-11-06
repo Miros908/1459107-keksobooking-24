@@ -59,3 +59,13 @@ export const center = {
 };
 
 
+export const DIAP_LOW = 10000;
+export const DIAP_HIGH = 50000;
+
+export const settingsprice = {
+  'any': () => true,
+  'low': (price) => price <DIAP_LOW,
+  'middle': (price) => price >= DIAP_LOW && price < DIAP_HIGH,
+  'high': (price) => price >= DIAP_HIGH,
+
+};

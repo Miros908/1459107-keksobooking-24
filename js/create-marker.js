@@ -28,6 +28,3 @@ export const marker = L.marker(
   });
 
 
-
-
-

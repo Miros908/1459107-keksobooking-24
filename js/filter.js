@@ -1,13 +1,4 @@
-const DIAP_LOW = 10000;
-const DIAP_HIGH = 50000;
-
-const settings = {
-  'any': () => true,
-  'low': (price) => price <DIAP_LOW,
-  'middle': (price) => price >= DIAP_LOW && price < DIAP_HIGH,
-  'high': (price) => price >= DIAP_HIGH,
-
-};
+import { settingsprice } from './setting.js';
 
 
 const roomsRule = (offerRooms, filterRooms) =>filterRooms === 'any' || offerRooms === filterRooms;
@@ -41,7 +32,7 @@ export const arrFeatures=function(featurefilter){
 };
 
 export const cratePredicate = (types,rooms,guests,category)=>(element)=>{
-  const byPrice = settings[category];
+  const byPrice = settingsprice[category];
 
   return(
     feturesRule(element.offer.features, arrFeatures(document.querySelectorAll('.map__checkbox')))&&

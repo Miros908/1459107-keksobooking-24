@@ -46,7 +46,7 @@ const getMarker=function(map,adres,adv,res,marker,mainPinStandart,predicate){
 
   const filterArr=res.filter((predicate)).slice(0,10);
   const layerArr=[];
- console.log(res)
+
   filterArr.forEach((results)=>{
 
     const markers = L.marker({
