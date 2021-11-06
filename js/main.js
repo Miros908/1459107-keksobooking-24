@@ -30,7 +30,9 @@ import { center } from './setting.js';
 import { marker } from './create-marker.js';
 import { mainPinStandart } from './create-marker.js';
 import { getMarker } from './get-map.js';
-import { arrFeatures } from './test.js';
+import { arrFeatures } from './filter.js';
+
+
 const forms = document.querySelector('.ad-form');
 const formfilter = document.querySelector('.map__filters');
 const title = forms.querySelector('.titles');
@@ -126,11 +128,9 @@ reset.addEventListener('click',()=> {
   forminizialization(desc,firsttype,oneroom,oneguest,firtstime,firsttimein,description,features,formfilter,price);
 });
 
-import{cratePredicate} from './test.js';
+import{cratePredicate} from './filter.js';
 
 
 formfilter.addEventListener('change',()=> { getData().then((response) => response.json()).then((data) => {getMarker(maps,adress,element,data,marker,mainPinStandart,cratePredicate(types.value,rooms.value,guests.value,houseprice.value));});});
-
-
 
 

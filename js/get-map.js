@@ -1,7 +1,7 @@
 import { activepage } from './disabled-page.js';
 import { announcement } from './get-element.js';
 import { disabledpage } from './disabled-page.js';
-import { check } from './filter.js';
+
 let cities = null;
 
 const getActiveForm=function(filter,form,map,center){
