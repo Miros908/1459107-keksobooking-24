@@ -2,9 +2,7 @@ import { activepage } from './disabled-page.js';
 import { announcement } from './get-element.js';
 import { disabledpage } from './disabled-page.js';
 import { check } from './filter.js';
-export const layerArr=[];
-
-
+let cities = null;
 
 const getActiveForm=function(filter,form,map,center){
   disabledpage(filter,form);
@@ -24,7 +22,7 @@ const getActiveForm=function(filter,form,map,center){
     },
   ).addTo(map);
 };
-const getMarker=function(map,adres,adv,res,marker,mainPinStandart){
+const getMarker=function(map,adres,adv,res,marker,mainPinStandart,predicate){
 
   marker.addTo(map);
 
@@ -46,9 +44,9 @@ const getMarker=function(map,adres,adv,res,marker,mainPinStandart){
   });
 
 
-  const filterArr=res.filter((check)).slice(0,10);
-
-
+  const filterArr=res.filter((predicate)).slice(0,10);
+  const layerArr=[];
+ console.log(res)
   filterArr.forEach((results)=>{
 
     const markers = L.marker({
@@ -65,8 +63,11 @@ const getMarker=function(map,adres,adv,res,marker,mainPinStandart){
 
 
   });
-  const cities=L.layerGroup(layerArr);
-cities.remove()
+  if(cities!==null){cities.remove();}
+
+
+  cities=L.layerGroup(layerArr);
+
   cities.addTo(map);
 
 
