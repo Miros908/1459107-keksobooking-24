@@ -26,3 +26,5 @@ export const marker = L.marker(
     draggable: true,
     icon: mainPinIcon,
   });
+
+

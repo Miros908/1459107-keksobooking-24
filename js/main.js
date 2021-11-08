@@ -1,35 +1,37 @@
 import {
   minsymbols
-} from './form.js'; //Минимальное количество симоволов для обьявления
+} from './form.js';
 import {
   priceForType
-} from './setting.js'; //цена в зависисмости от типа жилья
+} from './setting.js';
 import {
   getPlaceholder
-} from './form.js'; //изменения плейсхолдера
+} from './form.js';
 import {
   getMinprice
-} from './form.js'; //изменение минимальной цены
+} from './form.js';
 import {
   settings
-} from './setting.js'; //настройки заказчика
+} from './setting.js';
 import {
-  GetRoom
-} from './form.js'; //количество человек в зависимости от комнат
+  setAvailableRoom
+} from './form.js';
 import {
   getActiveForm
 } from './get-map.js';
 import { forminizialization } from './form-inizialization.js';
 
 
-import{getAds} from './get-data.js';
+import{getData} from './get-data.js';
 import { sendForm } from './get-data.js';
 
 import { center } from './setting.js';
 
 import { marker } from './create-marker.js';
 import { mainPinStandart } from './create-marker.js';
+import { getMarker } from './get-map.js';
 
+import{cratePredicate} from './filter.js';
 const forms = document.querySelector('.ad-form');
 const formfilter = document.querySelector('.map__filters');
 const title = forms.querySelector('.titles');
@@ -65,6 +67,10 @@ const desc=forms.querySelector('#title');
 const description=forms.querySelector('#description');
 const features=forms.querySelectorAll('.features__checkbox');
 const reset=forms.querySelector('.ad-form__reset');
+const types=document.querySelector('#housing-type');
+const rooms=document.querySelector('#housing-rooms');
+const guests=document.querySelector('#housing-guests');
+const houseprice=document.querySelector('#housing-price');
 
 
 getActiveForm(forms, formfilter, maps, center);
@@ -76,10 +82,14 @@ type.addEventListener('change', () => {
   getMinprice(price, priceForType, type);
 });
 
+price.addEventListener('input',()=> {
+  getMinprice(price, priceForType, type);
+});
 
-GetRoom(room, guest, settings);
+
+setAvailableRoom(room, guest, settings);
 room.addEventListener('change', () => {
-  GetRoom(room, guest, settings);
+  setAvailableRoom(room, guest, settings);
 });
 
 
@@ -89,15 +99,13 @@ time.addEventListener('change', (evt) => {
 
 });
 
-getAds(maps,adress,element,marker,mainPinStandart,body,message);
-sendForm(forms,body,succes,error,desc,firsttype,oneroom,oneguest,firtstime,firsttimein,description,features,formfilter,price,marker,center,maps,adress,priceForType,type,priceForType,type);
+getData().then((response) => response.json()).then((data) => {getMarker(maps,adress,element,data,marker,mainPinStandart,cratePredicate(types.value,rooms.value,guests.value,houseprice.value));}).catch(()=>{body.appendChild(message);});
+
 
 window.addEventListener('keydown',(evt)=> {
   if(evt.keyCode===27){
     succes.remove();
     error.remove();
-    forminizialization(desc,firsttype,oneroom,oneguest,firtstime,firsttimein,description,features,formfilter,price,marker,center,maps,adress);
-    getPlaceholder(priceForType,type,price);
 
 
   }
@@ -107,8 +115,6 @@ succes.addEventListener('click', () => {
 });
 
 
-sendForm(forms,body,succes,error,desc,firsttype,oneroom,oneguest,firtstime,firsttimein,description,features,formfilter,price);
-
 errorbutton.addEventListener('click',()=> {
   error.remove();
 });
@@ -117,3 +123,14 @@ errorbutton.addEventListener('click',()=> {
 reset.addEventListener('click',()=> {
   forminizialization(desc,firsttype,oneroom,oneguest,firtstime,firsttimein,description,features,formfilter,price);
 });
+
+
+formfilter.addEventListener('change',()=> { getData().then((response) => response.json()).then((data) => {getMarker(maps,adress,element,data,marker,mainPinStandart,cratePredicate(types.value,rooms.value,guests.value,houseprice.value));});});
+
+
+forms.addEventListener('submit', (evt) => {
+  evt.preventDefault();
+  const formData = new FormData(evt.target);
+  sendForm(formData).then(()=>{body.appendChild(succes);}).then(()=>{forminizialization(forms,formfilter,marker,center,maps,adress);}).then(()=>{getData().then((response) => response.json()).then((data) => {getMarker(maps,adress,element,data,marker,mainPinStandart,cratePredicate(types.value,rooms.value,guests.value,houseprice.value));});}).catch(()=>{body.appendChild(error);});
+},
+);
