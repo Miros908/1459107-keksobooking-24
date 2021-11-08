@@ -15,4 +15,3 @@ export const sendForm=function(formData){
   );
 };
 
-
