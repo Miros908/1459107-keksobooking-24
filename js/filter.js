@@ -1,9 +1,9 @@
 import { settingsprice } from './setting.js';
 
 
-const roomsRule = (offerRooms, filterRooms) =>filterRooms === 'any' || offerRooms === filterRooms;
+const GetRoomsRule = (offerRooms, filterRooms) =>filterRooms === 'any' || offerRooms === filterRooms;
 const typerool=(type,filterType)=>filterType === 'any' || type === filterType;
-const guestsRule = (offerGuests, filterGuests) =>filterGuests === 'any'|| offerGuests >= filterGuests;
+const GetGuestsRule = (offerGuests, filterGuests) =>filterGuests === 'any'|| offerGuests >= filterGuests;
 
 const compareFeature =(oelement, felement) =>oelement === felement;
 
@@ -21,7 +21,7 @@ const feturesRule = (offerFetures, filterFeatures) => {
 };
 
 
-export const arrFeatures=function(featurefilter){
+export const GetArrFeatures=function(featurefilter){
   const newArr=[];
   [...featurefilter].forEach((el)=>{
     if(el.checked===true){
@@ -31,15 +31,15 @@ export const arrFeatures=function(featurefilter){
   return newArr;
 };
 
-export const cratePredicate = (types,rooms,guests,category)=>(element)=>{
+export const GetPredicate = (types,rooms,guests,category)=>(element)=>{
   const byPrice = settingsprice[category];
 
   return(
-    feturesRule(element.offer.features, arrFeatures(document.querySelectorAll('.map__checkbox')))&&
+    feturesRule(element.offer.features, GetArrFeatures(document.querySelectorAll('.map__checkbox')))&&
     byPrice(element.offer.price)&&
     typerool(element.offer.type,types)
-    && roomsRule(element.offer.rooms,rooms)
-    && guestsRule(element.offer.guests, guests)
+    && GetRoomsRule(element.offer.rooms,rooms)
+    && GetGuestsRule(element.offer.guests, guests)
   );
 
 };

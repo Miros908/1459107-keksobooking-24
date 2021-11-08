@@ -69,7 +69,7 @@ const setAvatar = (avatarElement, avatarSrc) => {
   avatarElement.src = avatarSrc;
 };
 
-const announcement = function(info, elements) {
+export const GetAnnouncement = (info, elements)=> {
   const newElement = elements.cloneNode(true);
   const offer = info.offer;
 
@@ -96,6 +96,3 @@ const announcement = function(info, elements) {
 };
 
 
-export {
-  announcement
-};

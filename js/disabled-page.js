@@ -1,6 +1,5 @@
 
-
-const disabledpage=(formmap,form)=>{
+export const disabledpage=(formmap,form)=>{
   formmap.classList.add('ad-form--disabled');
   form.classList.add('ad-form--disabled');
   [...formmap.elements].forEach(
@@ -16,7 +15,7 @@ const disabledpage=(formmap,form)=>{
 };
 
 
-const activepage=(formmap,form)=>{
+export const activepage=(formmap,form)=>{
   formmap.classList.remove('ad-form--disabled');
   form.classList.remove('ad-form--disabled');
   [...formmap.elements].forEach(
@@ -32,4 +31,3 @@ const activepage=(formmap,form)=>{
 };
 
 
-export{disabledpage,activepage};

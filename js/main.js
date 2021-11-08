@@ -1,5 +1,5 @@
 import {
-  minsymbols
+  GetMinSymbols
 } from './form.js';
 import {
   priceForType
@@ -19,7 +19,7 @@ import {
 import {
   getActiveForm
 } from './get-map.js';
-import { forminizialization } from './form-inizialization.js';
+import {  GetFormInizialization } from './form-inizialization.js';
 
 
 import{getData} from './get-data.js';
@@ -31,7 +31,7 @@ import { marker } from './create-marker.js';
 import { mainPinStandart } from './create-marker.js';
 import { getMarker } from './get-map.js';
 
-import{cratePredicate} from './filter.js';
+import{GetPredicate} from './filter.js';
 const forms = document.querySelector('.ad-form');
 const formfilter = document.querySelector('.map__filters');
 const title = forms.querySelector('.titles');
@@ -43,11 +43,6 @@ const timeout = forms.querySelector('#timeout');
 const timein = forms.querySelector('#timein');
 const time = forms.querySelector('.ad-form__element--time');
 const maps = L.map('map-canvas');
-const firsttype=forms.querySelector('.bungalo');
-const firtstime=forms.querySelector('.twelve');
-const firsttimein=forms.querySelector('.twelvs');
-const oneroom=forms.querySelector('.oneroom');
-const oneguest=forms.querySelector('.oneguest');
 
 
 const adress = document.querySelector('#address');
@@ -63,9 +58,7 @@ const message = errormessage.querySelector('.errors');
 const errortemplate=document.querySelector('#error').content;
 const error=errortemplate.querySelector('.error');
 const errorbutton=error.querySelector('.error__button');
-const desc=forms.querySelector('#title');
-const description=forms.querySelector('#description');
-const features=forms.querySelectorAll('.features__checkbox');
+
 const reset=forms.querySelector('.ad-form__reset');
 const types=document.querySelector('#housing-type');
 const rooms=document.querySelector('#housing-rooms');
@@ -75,15 +68,18 @@ const houseprice=document.querySelector('#housing-price');
 
 getActiveForm(forms, formfilter, maps, center);
 
-minsymbols(title);
+GetMinSymbols(title);
 
-type.addEventListener('change', () => {
+
+type.addEventListener('click',()=>{
   getPlaceholder(priceForType, type, price);
   getMinprice(price, priceForType, type);
 });
 
+
 price.addEventListener('input',()=> {
   getMinprice(price, priceForType, type);
+  if (price.value<0) {price.value = '';} // minimum is 1
 });
 
 
@@ -99,20 +95,26 @@ time.addEventListener('change', (evt) => {
 
 });
 
-getData().then((response) => response.json()).then((data) => {getMarker(maps,adress,element,data,marker,mainPinStandart,cratePredicate(types.value,rooms.value,guests.value,houseprice.value));}).catch(()=>{body.appendChild(message);});
+getData().then((response) => response.json()).then((data) => {getMarker(maps,adress,element,data,marker,mainPinStandart,GetPredicate(types.value,rooms.value,guests.value,houseprice.value));}).catch(()=>{body.appendChild(message);});
 
 
-window.addEventListener('keydown',(evt)=> {
+function handler(evt) {
   if(evt.keyCode===27){
     succes.remove();
     error.remove();
-
+    window.removeEventListener('keydown', handler);
 
   }
-});
+}
+
+
 succes.addEventListener('click', () => {
+
   succes.remove();
-});
+
+
+},
+);
 
 
 errorbutton.addEventListener('click',()=> {
@@ -121,16 +123,17 @@ errorbutton.addEventListener('click',()=> {
 
 
 reset.addEventListener('click',()=> {
-  forminizialization(desc,firsttype,oneroom,oneguest,firtstime,firsttimein,description,features,formfilter,price);
+  GetFormInizialization(forms,formfilter,marker,center,maps,adress);
+  getData().then((response) => response.json()).then((data) => {getMarker(maps,adress,element,data,marker,mainPinStandart,GetPredicate(types.value,rooms.value,guests.value,houseprice.value));});
 });
 
 
-formfilter.addEventListener('change',()=> { getData().then((response) => response.json()).then((data) => {getMarker(maps,adress,element,data,marker,mainPinStandart,cratePredicate(types.value,rooms.value,guests.value,houseprice.value));});});
+formfilter.addEventListener('change',()=> { getData().then((response) => response.json()).then((data) => {getMarker(maps,adress,element,data,marker,mainPinStandart,GetPredicate(types.value,rooms.value,guests.value,houseprice.value));});});
 
 
 forms.addEventListener('submit', (evt) => {
   evt.preventDefault();
   const formData = new FormData(evt.target);
-  sendForm(formData).then(()=>{body.appendChild(succes);}).then(()=>{forminizialization(forms,formfilter,marker,center,maps,adress);}).then(()=>{getData().then((response) => response.json()).then((data) => {getMarker(maps,adress,element,data,marker,mainPinStandart,cratePredicate(types.value,rooms.value,guests.value,houseprice.value));});}).catch(()=>{body.appendChild(error);});
+  sendForm(formData).then(()=>{body.appendChild(succes);}).then(()=>{ GetFormInizialization(forms,formfilter,marker,center,maps,adress);}).then(()=>{getData().then((response) => response.json()).then((data) => {getMarker(maps,adress,element,data,marker,mainPinStandart,GetPredicate(types.value,rooms.value,guests.value,houseprice.value));});}).then(()=>{window.addEventListener('keydown',handler);}).catch(()=>{body.appendChild(error);});
 },
 );

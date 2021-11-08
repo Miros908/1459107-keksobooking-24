@@ -1,12 +1,9 @@
 
 
-export const forminizialization=function(form,formfilter,marker,center,map,adress){
+export const GetFormInizialization=(form,formfilter,marker,center,map)=>{
 
   formfilter.reset();
   form.reset();
   marker.setLatLng([center.lat , center.lng]);
   map.flyTo([center.lat , center.lng]);
-  adress.value=`${center.lat } ${ center.lng}`;
-
-
 };

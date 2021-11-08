@@ -1,10 +1,10 @@
 import { activepage } from './disabled-page.js';
-import { announcement } from './get-element.js';
+import { GetAnnouncement } from './get-element.js';
 import { disabledpage } from './disabled-page.js';
 
 let cities = null;
 
-const getActiveForm=function(filter,form,map,center){
+export const getActiveForm=(filter,form,map,center)=>{
   disabledpage(filter,form);
   map.on('load', () => {
     activepage(filter,form);
@@ -22,20 +22,19 @@ const getActiveForm=function(filter,form,map,center){
     },
   ).addTo(map);
 };
-const getMarker=function(map,adres,adv,res,marker,mainPinStandart,predicate){
+export const getMarker=(map,adres,adv,res,marker,mainPinStandart,predicate)=>{
 
   marker.addTo(map);
 
-
-  adres.value=`${marker.getLatLng().lat } ${ marker.getLatLng().lng}`;
+  const markerl=(marker.getLatLng().lat).toFixed(5);
+  const marketln=(marker.getLatLng().lng).toFixed(5);
+  const mcoorde=`${markerl } ${ marketln}`;
+  adres.value=mcoorde;
 
 
   marker.on('moveend', () => {
-
     const markerlat=(marker.getLatLng().lat).toFixed(5);
     const marketlng=(marker.getLatLng().lng).toFixed(5);
-
-
     const mcoord=`${markerlat } ${ marketlng}`;
 
     adres.value=mcoord;
@@ -58,7 +57,7 @@ const getMarker=function(map,adres,adv,res,marker,mainPinStandart,predicate){
     });
 
 
-    markers.bindPopup(announcement(results,adv));
+    markers.bindPopup(GetAnnouncement(results,adv));
     layerArr.push(markers);
 
 
@@ -72,6 +71,3 @@ const getMarker=function(map,adres,adv,res,marker,mainPinStandart,predicate){
 
 
 };
-
-
-export{getActiveForm,getMarker};
